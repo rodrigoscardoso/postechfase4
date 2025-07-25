@@ -1,0 +1,536 @@
+basePath: /v1
+definitions:
+  internal_delivery_http_handler.ErrorResponse:
+    properties:
+      messages:
+        example:
+        - Error message 1
+        - ' Error message 2'
+        items:
+          type: string
+        type: array
+      success:
+        example: false
+        type: boolean
+    type: object
+  internal_delivery_http_handler.createClientRequest:
+    properties:
+      email:
+        example: john-doe@email.com
+        type: string
+      name:
+        example: John Doe
+        type: string
+    required:
+    - email
+    - name
+    type: object
+  internal_delivery_http_handler.createOrderRequest:
+    properties:
+      client_id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        type: string
+      products:
+        items:
+          $ref: '#/definitions/internal_delivery_http_handler.orderProductRequest'
+        type: array
+    required:
+    - products
+    type: object
+  internal_delivery_http_handler.createProductRequest:
+    properties:
+      category_id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        minLength: 1
+        type: string
+      description:
+        example: Lanche com batata
+        type: string
+      image:
+        example: https://
+        type: string
+      name:
+        example: Lanche
+        type: string
+      value:
+        example: 10.9
+        type: number
+    required:
+    - name
+    - value
+    type: object
+  internal_delivery_http_handler.orderProductRequest:
+    properties:
+      observation:
+        example: Lanche com batata
+        type: string
+      product_id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        minLength: 1
+        type: string
+      quantity:
+        example: 1
+        type: integer
+    required:
+    - product_id
+    - quantity
+    type: object
+  internal_delivery_http_handler.updateProductRequest:
+    properties:
+      category_id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        minLength: 1
+        type: string
+      description:
+        example: Lanche com batata
+        type: string
+      image:
+        example: https://
+        type: string
+      name:
+        example: Lanche
+        type: string
+      value:
+        example: 10.9
+        type: number
+    required:
+    - name
+    - value
+    type: object
+  post-tech-challenge-10soat_internal_delivery_http_mapper.CategoryResponse:
+    properties:
+      id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        type: string
+      name:
+        example: Lanche
+        type: string
+    type: object
+  post-tech-challenge-10soat_internal_delivery_http_mapper.ClientResponse:
+    properties:
+      email:
+        example: john-doe@email.com
+        type: string
+      id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        type: string
+      name:
+        example: John Doe
+        type: string
+    type: object
+  post-tech-challenge-10soat_internal_delivery_http_mapper.ListOrdersResponse:
+    properties:
+      completed_orders:
+        items:
+          $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.OrderResponse'
+        type: array
+    type: object
+  post-tech-challenge-10soat_internal_delivery_http_mapper.OrderPaymentStatusResponse:
+    properties:
+      paymentStatus:
+        example: payment_approved
+        type: string
+    type: object
+  post-tech-challenge-10soat_internal_delivery_http_mapper.OrderResponse:
+    properties:
+      client_id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        type: string
+      created_at:
+        example: "1970-01-01T00:00:00Z"
+        type: string
+      id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        type: string
+      number:
+        example: 123
+        type: integer
+      status:
+        allOf:
+        - $ref: '#/definitions/post-tech-challenge-10soat_internal_entities.OrderStatus'
+        example: received
+      total:
+        example: 100.9
+        type: number
+      updated_at:
+        example: "1970-01-01T00:00:00Z"
+        type: string
+    type: object
+  post-tech-challenge-10soat_internal_delivery_http_mapper.ProductResponse:
+    properties:
+      category:
+        $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.CategoryResponse'
+      created_at:
+        example: "1970-01-01T00:00:00Z"
+        type: string
+      description:
+        example: Lanche com bacon
+        type: string
+      id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        type: string
+      image:
+        example: https://
+        type: string
+      name:
+        example: Lanche 1
+        type: string
+      updated_at:
+        example: "1970-01-01T00:00:00Z"
+        type: string
+      value:
+        example: 10.9
+        type: number
+    type: object
+  post-tech-challenge-10soat_internal_delivery_http_mapper.UpdateOrderStatusResponse:
+    properties:
+      created_at:
+        example: "1970-01-01T00:00:00Z"
+        type: string
+      id:
+        example: ed6ac028-8016-4cbd-aeee-c3a155cdb2a4
+        type: string
+      status:
+        allOf:
+        - $ref: '#/definitions/post-tech-challenge-10soat_internal_entities.OrderStatus'
+        example: received
+      updated_at:
+        example: "1970-01-01T00:00:00Z"
+        type: string
+    type: object
+  post-tech-challenge-10soat_internal_entities.OrderStatus:
+    enum:
+    - payment_pending
+    - received
+    - preparing
+    - ready
+    - completed
+    type: string
+    x-enum-varnames:
+    - OrderStatusPaymentPending
+    - OrderStatusReceived
+    - OrderStatusPreparing
+    - OrderStatusReady
+    - OrderStatusCompleted
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: API em Go para o desafio na pos-tech fiap de Software Architecture.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: POS-Tech API
+  version: "1.0"
+paths:
+  /clients:
+    post:
+      consumes:
+      - application/json
+      description: Registra um novo cliente com nome e e-mail
+      parameters:
+      - description: Registrar novo cliente request
+        in: body
+        name: createClientRequest
+        required: true
+        schema:
+          $ref: '#/definitions/internal_delivery_http_handler.createClientRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Cliente registrado
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.ClientResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Registra um novo cliente
+      tags:
+      - Clients
+  /clients/{cpf}:
+    get:
+      consumes:
+      - application/json
+      description: buscar um cliente pelo Cpf
+      parameters:
+      - description: CPF
+        in: path
+        name: cpf
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Cliente
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.ClientResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "404":
+          description: Cliente nao encontrado
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Busca um cliente
+      tags:
+      - Clients
+  /orders:
+    get:
+      consumes:
+      - application/json
+      description: Lista os pedidos ordenados pelor seu status na seguinte ordem Pronto
+        > Em preparação > Recebido
+      parameters:
+      - description: Limite de pedidos
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Pedidos listados
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.ListOrdersResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "500":
+          description: Erro interno
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Lista os pedidos
+      tags:
+      - Orders
+    post:
+      consumes:
+      - application/json
+      description: Cria um novo pedido com o pagamento pendente
+      parameters:
+      - description: Criar ordem body
+        in: body
+        name: createOrderRequest
+        required: true
+        schema:
+          $ref: '#/definitions/internal_delivery_http_handler.createOrderRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Ordem criada
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.OrderResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "500":
+          description: Erro interno
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Criar um novo pedido (checkout)
+      tags:
+      - Orders
+  /orders/{id}/payment-status:
+    get:
+      consumes:
+      - application/json
+      description: Consultar o status de pagamento de um pedido
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Status do pagamento
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.OrderPaymentStatusResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "404":
+          description: Pedido não encontrado
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Consultar status de pagamento
+      tags:
+      - Orders
+  /orders/{id}/status:
+    patch:
+      consumes:
+      - application/json
+      description: Atualizar status do pedido
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Status do pedido
+        enum:
+        - preparing
+        - ready
+        - completed
+        in: query
+        name: status
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Status do pagamento
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.UpdateOrderStatusResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "404":
+          description: Pedido não encontrado
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Atualizar status do pedido
+      tags:
+      - Orders
+  /products:
+    get:
+      consumes:
+      - application/json
+      description: Lista os produtos podendo buscar por categoria
+      parameters:
+      - description: Id da categoria
+        in: query
+        name: category_id
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Produtos listados
+          schema:
+            items:
+              $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.ProductResponse'
+            type: array
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "500":
+          description: Erro interno
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Lista os produtos
+      tags:
+      - Products
+    post:
+      consumes:
+      - application/json
+      description: registra um novo produto
+      parameters:
+      - description: Registrar novo produto body
+        in: body
+        name: createProductRequest
+        required: true
+        schema:
+          $ref: '#/definitions/internal_delivery_http_handler.createProductRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Produto registrado
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.ProductResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Registra um novo produto
+      tags:
+      - Products
+  /products/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Remove um produto por meio de seu identificador
+      parameters:
+      - description: Id do produto
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Produto removido
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.ProductResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "404":
+          description: Produto nao encontrado
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Remove um produto
+      tags:
+      - Products
+    put:
+      consumes:
+      - application/json
+      description: Atualiza um produto
+      parameters:
+      - description: Id do produto
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Atualizar produto body
+        in: body
+        name: updateProductRequest
+        required: true
+        schema:
+          $ref: '#/definitions/internal_delivery_http_handler.updateProductRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Produto atualizado
+          schema:
+            $ref: '#/definitions/post-tech-challenge-10soat_internal_delivery_http_mapper.ProductResponse'
+        "400":
+          description: Erro de validação
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+        "404":
+          description: Produto nao encontrado
+          schema:
+            $ref: '#/definitions/internal_delivery_http_handler.ErrorResponse'
+      summary: Atualiza um produto
+      tags:
+      - Products
+securityDefinitions:
+  BasicAuth:
+    type: basic
+swagger: "2.0"
