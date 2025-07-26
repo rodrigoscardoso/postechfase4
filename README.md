@@ -27,6 +27,27 @@ Para garantir o armazenamento de dados, foi definido o uso de banco de dados rel
 
 * Docker
 * Docker Compose
+* Variavevi de Ambiente (somente local para Apps)
+
+```
+export APP_NAME="post-tech-challenge-10soat" && 
+export APP_ENV="development" && 
+export HTTP_URL="127.0.0.1" && 
+export HTTP_PORT="8080" && 
+export HTTP_ALLOWED_ORIGINS="*" && 
+export DB_CONNECTION="postgres" && 
+export DB_HOST="127.0.0.1" && 
+export DB_PORT="5432" && 
+export DB_NAME="gopos" && 
+export DB_USER="postgres" && 
+export DB_PASSWORD="postgres" && 
+export MONGO_HOST="localhost" && 
+export MONGO_PORT="27017" && 
+export MONGO_DB="postechdb" && 
+export MONGO_USER="mongouser" && 
+export MONGO_PASSWORD="mongopass" && 
+export MONGO_NAME=postech
+```
 
 ### Passos
 

@@ -25,6 +25,7 @@ services:
       - MONGO_DB=postechdb
       - MONGO_USER=mongouser
       - MONGO_PASSWORD=mongopass
+      - MONGO_NAME=postech
     depends_on:
       postgres:
         condition: service_healthy
