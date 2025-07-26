@@ -208,7 +208,7 @@ func TestOrderHandler_GetOrderPaymentStatus_Success(t *testing.T) {
 
 	var response struct {
 		Data struct {
-			PaymentStatus string `json:"payment_status"`
+			PaymentStatus string `json:"paymentStatus"`
 		} `json:"data"`
 	}
 	err := json.Unmarshal(w.Body.Bytes(), &response)
