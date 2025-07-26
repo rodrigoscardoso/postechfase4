@@ -34,8 +34,6 @@ build/
 
 # Logs and databases
 *.log
-*.sql
-*.sqlite
 
 # Environment files
 .env

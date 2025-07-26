@@ -6,8 +6,6 @@ Este projeto implementa uma API RESTful em Go para servir um sistema de pedidos,
 
 A API inicialmente adotou-se para a Fase 01 arquitetura Hexagonal, e nesse momento para a Fase 02 tem sua base na Clean Architecture, sendo:
 
-Em construção...
-
 ## Banco de dados
 Para garantir o armazenamento de dados, foi definido o uso de banco de dados relacional por meio do Postgres, no qual temos a seguinte modelagem:
 ![DER](./diagram/der-diagram.png)
@@ -72,13 +70,19 @@ Criar os containers para a aplicação (postech) e o banco de dados (postgres).
 Iniciar os containers em modo detached (-d), executando em segundo plano.
 
 
-4. **Verifique os logs da aplicação:**
+4. **Verifique a aplicação:**
    ```bash
    docker-compose logs -f postech
+
+4.1. **Testes:**
+   ```bash
+   go test ./internal/delivery/http/handler/...
+   ```
 
 5. **Parando a aplicação:**
    ```bash
    docker-compose down
+   ```
 
 6. **Acesse a API: A API estará disponível em http://localhost:8080/v1/(endpoints)**
 
