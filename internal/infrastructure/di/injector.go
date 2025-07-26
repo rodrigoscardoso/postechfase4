@@ -115,7 +115,7 @@ func Setup(config *config.App, db *postgres.DB, mongo *mongo.MONGO) (
 
 	// Handlers
 	healthHandler := handler.NewHealthHandler()
-	clientHandler := handler.NewClientHandler(*clientController)
+	clientHandler := handler.NewClientHandler(clientController)
 	productHandler := handler.NewProductHandler(*productController)
 	orderHandler := handler.NewOrderHandler(*orderController)
 
